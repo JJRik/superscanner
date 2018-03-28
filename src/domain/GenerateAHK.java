@@ -8,6 +8,7 @@ import java.util.List;
 public class GenerateAHK {
     List<Doc> docs;
     String regNr;
+    int pageModifier;
 
     public String getRegNr() {
         return regNr;
@@ -15,6 +16,17 @@ public class GenerateAHK {
 
     public GenerateAHK() {
         this.docs = new ArrayList<>();
+        this.pageModifier = 0;
+    }
+
+    public int getPageModifier() {
+        return pageModifier;
+    }
+
+    public void onePager(){
+        System.out.println("siin");
+        pageModifier = pageModifier + 1;
+        System.out.println(pageModifier);
     }
 
     public void add(Doc doc) {

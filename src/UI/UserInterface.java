@@ -11,9 +11,10 @@ import java.awt.*;
 
 public class UserInterface implements Runnable {
     private JFrame frame;
-    GenerateAHK ahk = new GenerateAHK();
+    GenerateAHK ahk;
 
     public UserInterface() {
+        this.ahk = new GenerateAHK();
     }
 
 
@@ -43,13 +44,12 @@ public class UserInterface implements Runnable {
 
 
         int rows = 8;
-        int cols = 6;
+        int cols = 4;
 
         JPanel skeleton = new JPanel(new GridLayout(rows, cols, 0, 0));
 
         JPanel[][] panels = new JPanel[rows][cols];
 
-        int page = 0;
         for (int i = 0; i < rows; i++){
 
             Doc doc = new Doc("","","","","","");
@@ -74,25 +74,12 @@ public class UserInterface implements Runnable {
                     input.setColumns(4);
                     input.getDocument().addDocumentListener(new YearListener(doc));
                 }
+
                 if (j == 3){
-                    input.setColumns(2);
-                    input.setText(String.valueOf(page+1));
-                    page += 1;
-                    doc.setStartPage(String.valueOf(page));
-                    input.addFocusListener(new PageListeners());
-
-                }
-                if (j == 4){
-                    input.setColumns(2);
-                    input.setText(String.valueOf(page +1));
-                    page += 1;
-                    doc.setLastPage(String.valueOf(page));
-                    input.addFocusListener(new PageListeners());
-
-                }
-                if (j == 5){
                     input.setColumns(4);
-                    input.getDocument().addDocumentListener(new TypeListener(ahk, doc));
+                    TypeListener typeToDoc = new TypeListener(ahk, doc, i);
+
+                    input.getDocument().addDocumentListener(typeToDoc);
 
 
                 }

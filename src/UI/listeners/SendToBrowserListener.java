@@ -46,7 +46,7 @@ public class SendToBrowserListener implements KeyListener{
 
             ahk.generateScript();
             try {
-                sleep(1000);
+                sleep(200);
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
             }
